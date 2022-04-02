@@ -9,7 +9,7 @@ with open("discours.txt", "r", encoding="utf-8") as fichier:
     chaine = fichier.read()
 
 
-def transi_markov(chaine):
+def transi_markov1lettre(chaine):
     # permet de creer un dictionaire avec les caractères et le nombre d'occurences des carctères suivants
     dico = {}
     n = len(chaine)
@@ -44,7 +44,7 @@ def suitelettre(car, dico):
 def creation_texte(chaine, nbr):
     # creation d'un texte de n caractères en preant en compte les probas du dictionnaire des transiions
     texte = ""
-    d = transi_markov(chaine)
+    d = transi_markov1lettre(chaine)
     # premier caractère choisi aleatoirement
     premiere_lettre = alphabet[randint(1, 26)]
     premiere_lettre_mini = premiere_lettre.lower()
@@ -64,5 +64,5 @@ def creation_texte(chaine, nbr):
     return texte
 
 
-print(transi_markov(chaine))
-print(creation_texte(chaine, 100))
+print(transi_markov1lettre(chaine))
+print(creation_texte(chaine, 1000))
