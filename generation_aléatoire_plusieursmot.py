@@ -5,7 +5,7 @@ from random import *
 from this import d
 
 
-with open("Zemmourdiscours", "r", encoding="utf-8") as fichier:
+with open("zola.txt", "r", encoding="utf-8") as fichier:
     chaine = fichier.read()
     listMots = chaine.split()
 
@@ -94,12 +94,38 @@ def creation_texte(liste_mots, nbr):
 print(creation_texte(listMots, 100))
 
 
-# def finir_phrase(chaine):
-#     t = ""
-#     if chaine[-1] == "!" or "?" or ".":
-#         pass
-#     else:
-#         while t[-1] != "!" or "?" or ".":
-#             car = suitemot(deux_derniers_mots, d)
-#             t = t + car
-#     print(t)
+def finir_phrase(chaine):
+    # split pour recuperer les deux derniers mots de la chaine
+    tab_chaine = chaine.split()
+    # chaine pour terminer le mot avec 1 pour que la condition puisse exister
+    t = "1 1"
+    t_split = t.split()
+
+    # si la chaine fini deja par un point alors Rien
+    if chaine[-1] == "!" or chaine[-1] == "?" or chaine[-1] == ".":
+        pass
+    else:
+        # tant que le dernier caractere n'est pas un point
+        while t_split[-1][-1] != "." and t_split[-2][-1] != ".":
+            t = t + " "
+            # premier rajout de caracteres
+            if t == "1 1 ":
+                t = ""
+                car = suitemot(tab_chaine[-2] + " " +
+                               tab_chaine[-1], transi_markovmots(listMots))
+                t = t + car
+            # pour les autres on prend les deux derniers mots de t et chaine de markov
+            else:
+                tab_t = t.split()
+                car = suitemot(tab_t[-2] + " " +
+                               tab_t[-1], transi_markovmots(listMots))
+                t = t + car
+            t_split = t.split()
+    if t[-1] == ".":
+        return t
+    else:  # il faudrait enlever le dernier mot
+        print(t_split[-1])
+        n = len(t_split[-1])
+        for i in range(n):
+            t = t[:-1]
+        return t

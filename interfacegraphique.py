@@ -26,8 +26,10 @@ compt_nbrmot.pack()
 
 
 def creation():
-
-    textm.insert(INSERT, creation_texte(listMots, int(compt_nbrmot.get())))
+    if int(compt_nbrmot.get()) == 0:
+        pass
+    else:
+        textm.insert(INSERT, creation_texte(listMots, int(compt_nbrmot.get())))
 
 
 generer = Button(fenetre, text="GENERER", command=creation)
@@ -36,7 +38,12 @@ generer.pack()
 textm = Text(fenetre, height=15, width=70)
 textm.pack()
 
-fin_phrase = Checkbutton(fenetre, text="finir la phrase")
+
+def finir_la_phrase():
+    textm.insert(INSERT, finir_phrase(textm.get("1.0", "end")))
+
+
+fin_phrase = Button(fenetre, text="Finir la phrase", command=finir_la_phrase)
 fin_phrase.pack()
 fenetre.mainloop()
 
