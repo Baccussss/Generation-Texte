@@ -4,10 +4,9 @@ from itertools import chain
 from random import *
 
 
-with open("discours.txt", "r", encoding="utf-8") as fichier:
+with open("leRougeEtLeNoir.txt", "r", encoding="utf-8") as fichier:
     chaine = fichier.read()
     listMots = chaine.split()
-
 
 def transi_markov1mot(listMots):
     dico = {}
@@ -25,6 +24,7 @@ def transi_markov1mot(listMots):
 
 
 def suitemot(mot, dico):
+    #permet de choisir aleatoirement le mot suivant
     D = dico[mot]
     somme = 0
     for cle in D:
@@ -44,8 +44,19 @@ def creation_texte(liste_mots, nbr):
     texte = ""
     d = transi_markov1mot(liste_mots)
     # premier mot choisi aleatoirement
-    mot = "je"
-
+    n = len(liste_mots)
+    lettre = randint(0,25)
+    lettre = chr(65 + lettre)
+    mots_potentiels = []
+    for cle in liste_mots:
+        if cle[0] == lettre:
+            mots_potentiels.append(cle)
+    longueur = len(mots_potentiels)
+    indice = randint(0,longueur-1)
+    mot = mots_potentiels[indice]
+    
+    texte = texte + mot + " "
+    
     # reste des mots du texte
     for i in range(nbr-1):
         if i == 0:
@@ -57,6 +68,4 @@ def creation_texte(liste_mots, nbr):
     return texte
 
 
-# print(creation_texte(listMots, 100))
-
-print(creation_texte(listMots, 500))
+print(creation_texte(listMots,100))
