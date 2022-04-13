@@ -2,14 +2,11 @@ from __future__ import print_function
 from encodings import utf_8
 from itertools import chain
 from random import *
-from this import d
 
 
 with open("zola.txt", "r", encoding="utf-8") as fichier:
     chaine = fichier.read()
     listMots = chaine.split()
-
-n = ["je" for i in range(10)]
 
 
 def transi_markovmots(listMots):
@@ -54,8 +51,6 @@ def moyenneoccurence(dico):
     for cle in dico:
         for elt in cle:
             somme = somme + 1
-    print(somme)
-    print(len(dico))
     moyenne = somme/len(dico)
     return moyenne
 
@@ -91,7 +86,7 @@ def creation_texte(liste_mots, nbr):
     return texte
 
 
-print(creation_texte(listMots, 100))
+#print(creation_texte(listMots, 100))
 
 
 def finir_phrase(chaine):
@@ -124,7 +119,6 @@ def finir_phrase(chaine):
     if t[-1] == ".":
         return t
     else:  # il faudrait enlever le dernier mot
-        print(t_split[-1])
         n = len(t_split[-1])
         for i in range(n):
             t = t[:-1]
