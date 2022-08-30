@@ -56,6 +56,8 @@ def moyenneoccurence(dico):
 
 
 def creation_texte(liste_mots, nbr):
+    if nbr == 0:
+        return "Vous n'avez pas séléctionné le nombre de mots."
     # creation d'un texte de n mots en preant en compte les probas du dictionnaire des transiions
     texte = ""
     d = transi_markovmots(liste_mots)
@@ -74,7 +76,6 @@ def creation_texte(liste_mots, nbr):
     mot = mots_potentiels[indice]
 
     texte = texte + mot + " "
-
     # reste des mots du texte
     for i in range(nbr//2):
         if i == 0:

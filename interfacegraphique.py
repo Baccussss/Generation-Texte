@@ -1,3 +1,4 @@
+from cgitb import text
 from tkinter import *
 from generation_aléatoire_plusieursmot import *
 
@@ -41,7 +42,7 @@ three = Checkbutton(root, text="Zola", variable=threevar, onvalue=True)
 three.grid(column=2, row=1, padx=(50, 0), sticky='w')
 
 # ligne 3
-four = Checkbutton(root, text="Maupassant", variable=fourvar, onvalue=True)
+four = Checkbutton(root, text="Montesquieu", variable=fourvar, onvalue=True)
 four.grid(column=0, row=2, padx=(50, 0), sticky='w')
 
 five = Checkbutton(root, text="Camus", variable=fivevar, onvalue=True)
@@ -83,7 +84,7 @@ def creation():
         pass
     # si aucun auteur
     if onevar.get() == False and twovar.get() == False and threevar.get() == False:
-        textm.insert(INSERT, "Il faut selectionner un auteur. ")
+        textm.insert(INSERT, "Vous n'avez pas sélectionné un auteur !")
     # si premier auteur coché !
     if onevar.get() == True:
         with open("Jules_verne.txt", "r", encoding="utf-8") as fichier:
